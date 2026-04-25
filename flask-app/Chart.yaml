@@ -1,0 +1,8 @@
+apiVersion: v2
+name: gitops-flask-app
+description: A Helm chart for deploying Flask App using GitOps (Argo CD)
+type: application
+
+version: 0.1.0        # Chart version (Helm versioning)
+appVersion: "1.0"     # Application version (for reference)
+

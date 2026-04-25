@@ -1,1 +1,0 @@
-# gitops-flask-app-manifests

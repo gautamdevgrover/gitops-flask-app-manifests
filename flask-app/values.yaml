@@ -1,0 +1,9 @@
+image:
+  repository: gautamdevgrover/gitops-flask-app
+  tag: "1"
+
+app:
+  version: "1"
+
+service:
+  nodePort: 30007

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+  namespace: gitops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 5000
+
+        env:
+        - name: APP_VERSION
+          value: "{{ .Values.app.version }}"
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
